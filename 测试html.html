@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国珍稀动物保护</title>
+    <!-- 添加以下内容到head标签内 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="珍稀动物">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a5f7a 0%, #159895 50%, #57c5b6 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            background: linear-gradient(to right, #1a5f7a, #159895);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 5px solid #ffcc00;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .intro h2 {
+            color: #1a5f7a;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro h2:after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background: #ffcc00;
+            bottom: -10px;
+            left: 15%;
+            border-radius: 2px;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .animal-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .icon:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon i {
+            font-size: 2.8rem;
+            color: #159895;
+            margin-bottom: 10px;
+        }
+
+        .icon span {
+            font-weight: 600;
+            color: #1a5f7a;
+        }
+
+        .jump-section {
+            background-color: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 700px;
+            margin-top: 20px;
+        }
+
+        .jump-section h3 {
+            color: #1a5f7a;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .target-link {
+            background-color: #e9f7f7;
+            border-left: 5px solid #159895;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+            word-break: break-all;
+        }
+
+        .target-link i {
+            color: #1a5f7a;
+            margin-right: 10px;
+        }
+
+        .jump-button {
+            background: linear-gradient(to right, #ff9a3c, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            gap: 12px;
+        }
+
+        .jump-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.5);
+            background: linear-gradient(to right, #ff8a2e, #ff5252);
+        }
+
+        .jump-button:active {
+            transform: translateY(0);
+        }
+
+        .jump-button i {
+            font-size: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 0.95rem;
+            border-top: 1px solid #eee;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .hint {
+            margin-top: 25px;
+            font-style: italic;
+            color: #666;
+            background-color: #fff9e6;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffcc00;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .intro h2 {
+                font-size: 1.7rem;
+            }
+
+            .jump-section {
+                padding: 30px 20px;
+            }
+
+            .animal-icons {
+                gap: 20px;
+            }
+
+            .icon i {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .jump-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-paw"></i> 中国珍稀动物保护</h1>
+            <p>中国拥有丰富的生物多样性，许多珍稀动物栖息在这片古老的土地上。了解并保护这些珍稀物种，是我们共同的责任。</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <h2>探索珍稀动物世界</h2>
+                <p>中国是世界上生物多样性最丰富的国家之一，拥有大熊猫、金丝猴、华南虎、朱鹮等众多珍稀特有动物。这些动物不仅是自然遗产的重要组成部分，也是生态系统健康的关键指标。</p>
+                <p>保护珍稀动物就是保护我们共同的地球家园。点击下方按钮，前往中国珍稀动物专题页面，了解更多关于这些珍贵物种的知识和保护现状。</p>
+
+                <div class="animal-icons">
+                    <div class="icon">
+                        <i class="fas fa-cat"></i>
+                        <span>大熊猫</span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dove"></i>
+                        <span>朱鹮</span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-hippo"></i>
+                        <span>亚洲象</span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-fish"></i>
+                        <span>中华鲟</span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-otter"></i>
+                        <span>水獭</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jump-section">
+                <h3>跳转到珍稀动物页面</h3>
+                <p>点击下方按钮，您将跳转到详细的中国珍稀动物介绍页面：</p>
+
+                <div class="target-link">
+                    <p><i class="fas fa-link"></i>
+                        目标网址：<strong>https://deepseek.idoxu.com/Sondra/zhongguozhenxidongwu1.html</strong></p>
+                </div>
+
+                <button id="jumpButton" class="jump-button">
+                    <i class="fas fa-external-link-alt"></i> 立即跳转到珍稀动物页面
+                </button>
+
+                <div class="hint">
+                    <p><i class="fas fa-lightbulb"></i> 提示：您也可以复制上方链接，在浏览器中手动打开。</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 中国珍稀动物保护 | 本页面仅用于演示跳转功能</p>
+            <p>保护野生动物，维护生态平衡</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('jumpButton').addEventListener('click', function () {
+            // 显示跳转提示
+            const button = this;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在跳转...';
+            button.disabled = true;
+
+            // 模拟跳转前的短暂延迟
+            setTimeout(() => {
+                // 实际跳转
+                window.location.href = 'https://deepseek.idoxu.com/Sondra/zhongguozhenxidongwu1.html';
+            }, 800);
+
+            // 防止按钮状态在跳转前被重置
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 3000);
+        });
+
+        // 添加页面加载动画效果
+        document.addEventListener('DOMContentLoaded', function () {
+            const icons = document.querySelectorAll('.icon');
+            icons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.1}s`;
+                icon.classList.add('animate-icon');
+            });
+        });
+
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker 注册成功:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker 注册失败:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
